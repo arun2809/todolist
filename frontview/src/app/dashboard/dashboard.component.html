@@ -1,0 +1,159 @@
+<div class="container" id="mainbody">
+
+
+
+<div class="container" id="head">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div *ngIf="profilepic==undefined || profilepic== null">
+            <img class="card-img-top " src="/assets/2.png" alt="Card image cap" class="img-fluid">
+
+          <!-- <img src="/assets/2.png" style="background-color:aquamarine"> -->
+        </div>
+        <div *ngIf="profilepic != undefined || profilepic != null">
+            <img class="card-img-top " src="{{profilepic}}" alt="Card image cap" class="img-fluid ">
+
+        </div>
+          <h3>Hi {{username}}</h3>
+          <!-- <input type="file" name="imgupload" [(ngModel)]="imgupload">
+          <button (click)="seeimg()">Change</button> -->
+          <div class="upload-btn-wrapper">
+              <!-- <button class="btn">Upload a file</button> -->
+              <input type="file" name="imageurl"  #Image accept="image/*" [(ngModel)]="imageurl" (change)="onfileselected(imageurl)">
+  
+            </div>
+        
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+      
+  
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+             <div>
+               <button style="color:black" class="btn btn-outline-info" >Friend List</button>
+               <br>
+               <div *ngFor= "let x of friendlist" >
+                    {{x.friendsname}} 
+               </div>
+             
+             </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <div>
+          <button style="color:black" class="btn btn-outline-info" (click)="friendspage()">Request to Friends</button>
+          <button class="btn btn-link" (click)="logout()">Logout</button>
+   
+            </div>
+            <br>
+            <img src="/assets/friend.png" style="height:45px" id="noti-img" (click)="notifier()">
+           
+           
+            <label *ngIf="notificationnumber>0" ><p style="color:red">({{notificationnumber}})Notification</p></label>
+           
+           
+       <!-- notification style     -->
+    <div *ngFor = "let x of notification">
+        <div class="card" style="width:40%;" class="notification" style="display:none">
+            <img class="card-img-top" src="/assets/2.png" alt="Card image cap" style="width:23%; height:5%; align-content: center" >
+            <div class="card-body">
+             <label>{{x.requestername}}</label>
+             <br>
+            <button class="btn btn-primary" style="align-content:center" (click)="acceptrequest(x.requestername,x.requesteremail)">Accept</button>
+              <button class="btn btn-danger" style="align-content:centre" (click)="rejectrequest(x.requesteremail)">Reject</button>
+            </div>
+          </div>
+    </div>
+
+
+
+             </div>
+  
+    </div>
+  
+  </div>
+  <br>
+  
+  <br>
+  <div class="container" id="bodypart1">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12"> 
+      
+       
+  
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <input type="text" class="form-control" [(ngModel)]="workname"
+         placeholder="create task" aria-describedby="sizing-addon1">
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <button class="badge badge-primary badge-pill" (click)="createtodolist()">Create</button>
+  
+  
+    </div>
+  
+  </div>
+  </div>
+  
+  
+  <br>
+  <br>
+  <!-- list of tasks -->
+  
+  <div class="container" id="bodypart2">
+    <div class="row" style="border-style: hidden" >
+  <div class="col-sm-12 col-lg-4 col-md-6">
+  
+  </div>
+  <div class="col-sm-12 col-lg-4 col-md-6">
+  <h4 style="color:white">List of TODO</h4>
+    </div>
+    <div class="col-sm-12 col-lg-4 col-md-6">
+  
+      </div>
+    </div>
+    <br>
+  
+    <div class="row">
+  <div class="col-lg-6 col-sm-12 col-md-6">
+     <div *ngFor="let list of workdata; let i= index;" >
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="background-image:url('/assets/4.jpg'); color: white" >
+              {{list.workname}}
+            
+              <br>
+              <div>
+  
+              </div>
+              <span ><button class="badge badge-primary badge-pill" (click)="deletetask(list.workname)">Delete</button></span>
+            </li>
+            <br>
+           
+  
+            <div>
+            </div>
+  
+            
+          </ul>
+  
+     </div>
+     <br>
+  <div *ngIf = "worklistwithfriends != undefined">
+    <h4 style="color:white">TodoList with Friends</h4>
+    <br>
+    <div *ngFor="let x of worklistwithfriends">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between align-items-center" style="background-image:url('/assets/4.jpg'); color: white" > 
+         {{x.workname}}
+         <span ><button class="badge badge-primary badge-pill" (click)="deletetask(x.workname)">Delete</button></span>
+        
+        </li>
+    </ul>
+           </div>
+  </div>
+  </div>
+  
+  
+  </div>
+  
+
+</div>

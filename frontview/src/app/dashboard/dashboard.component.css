@@ -1,0 +1,13 @@
+#head
+{
+    
+    background-color:white;
+    padding-top: 2%;
+  
+    border-style: groove;
+}
+
+#mainbody
+{
+    background-image: url('/assets/4.jpg')
+}
