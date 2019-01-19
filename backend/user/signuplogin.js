@@ -160,7 +160,7 @@ let forget = (req,res)=>{
                 service:'Gmail',
                 auth:{
                     user:'todonoreplyonit@gmail.com',
-                    pass:'password@12'
+                    pass:''
                 }
             })
             let url = "http://localhost:4200/reset/?token="+token
